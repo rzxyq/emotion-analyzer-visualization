@@ -2,7 +2,7 @@
 <html>
 
   <head>
-    <title>NodeJS Starter Application</title>
+    <title>Sentiment Analysis</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,11 +17,22 @@
   </head>
 
   <body>
+  <div class="container">
+  <p>This is supposed to be an audio sentiment analysis app. Due to the lack of time (prelims!) this weekend I really did not have much time to implement that part(sorry about that!). But it can be done fairly easily and accuretly thourhg IBM speech to text analysis (https://speech-to-text-demo.mybluemix.net/). </p>
+  <p>Functionality: type in a paragraph in the speechbox and click Analyze. To get aggregate results in a single session, click Aggregate result. And each time you click it an aggregate graph will show up underneath the inputbox for you to view the differences each time.</p>
+  <p>For the data visualization, I mainly used D3.js. The app itself is built upon Node.js, Express, Alchemyapi and IBM bluemix. Apologize that this is the basic emotional model instead of the circumspect model of effect. I thought about doing custom data analysis to get the Valence, Arousal and Dominance model of each sentence at first as I can't find any good online api that does this. And part of it (a naive word level analyzer) is done in Python, as you can see in the attached ipython notebook file. I used the ANEW affect dictionary to get the sentiment. However, again there are a lot of complications to achieve the same intelligence of alchemy (e.g., word level sentiment analysis is not enough as 'did not like' is the opposite of 'like' but a naive analyzer have a hard time identifying that. So eventually I chose IBM bluemix instead. However, their emotion analysis api is also in beta so as you can see there's a lot of inaccuracy for certain sentences if you try it in the inputbox. If requested, we can surely design and build our own ad hoc analysis tool instead of using alchemy but it's not worth it timewise to invest in this at the beginning.</p>
+  <p>References:
+  http://crr.ugent.be/papers/Warriner_et_al_affective_ratings.pdf
+http://crr.ugent.be/archives/1003
+http://www.uvm.edu/~pdodds/research/papers/files/2013/warriner2013a.pdf
+http://neuro.compute.dtu.dk/wiki/Sentiment_analysis.
+http://ai.stanford.edu/~amaas/papers/multisent-techreport-2011.pdf.</p>
+
 <div class="chart-container"></div>
-<div id="#chart-container2"></div>
-<textarea id="textarea" rows="4" cols="50"></textarea>
 <input id="button" type="submit" value="Analyze">
 <input id="agg" type="submit" value="Show Aggregate">
+<textarea id="textarea" rows="4" cols="50"></textarea>
+</div>
 
 <script src="radarChart.js"></script>
   </body>

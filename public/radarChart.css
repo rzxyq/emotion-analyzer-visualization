@@ -27,6 +27,16 @@
 }
 
 .area.green, .green .circle {
-  fill: #ADD8E6;
+  fill: #66ff33;
   stroke: none;
+}
+
+.area.agg, .agg .circle {
+  fill: #ccff33;
+  stroke: none;
+}
+
+.container {
+  width: 65%;
+  margin: 0 auto;
 }

@@ -1,9 +1,10 @@
- RadarChart.defaultConfig.color = function() {};
-RadarChart.defaultConfig.radius = 10;
-RadarChart.defaultConfig.w = 400;
-RadarChart.defaultConfig.h = 400;
+ // global variables. Saved as long as session doesn't end
 
- 
+RadarChart.defaultConfig.color = function() {};
+RadarChart.defaultConfig.radius = 10;
+RadarChart.defaultConfig.w = 800;
+RadarChart.defaultConfig.h = 800;
+
 var data = [  {
                           className: 'generic',
                           axes: [
@@ -15,8 +16,15 @@ var data = [  {
                           ]
                         }];
 
+var anger_agg=0;
+var disgust_agg=0;
+var sadness_agg=0;
+var fear_agg=0;
+var joy_agg=0;
+var docEmotions = '';
 
-  var docEmotions = '';
+
+// events
   $("#button").click(function(){
 
     var text = $('#textarea').val();
@@ -42,10 +50,15 @@ var data = [  {
                         
 
                         var anger = docEmotions.anger;
+                        anger_agg+=parseFloat(anger);
                         var disgust = docEmotions.disgust;
+                        disgust_agg+=parseFloat(disgust);
                         var sadness = docEmotions.sadness;
+                        sadness_agg+=parseFloat(sadness);
                         var fear = docEmotions.fear;
+                        fear_agg+=parseFloat(fear);
                         var joy = docEmotions.joy;
+                        joy_agg+=parseFloat(joy);
                         var name = 'generic';
 
                         var max = Math.max(anger, disgust, sadness, fear, joy);
@@ -76,28 +89,25 @@ var data = [  {
   });
 
 $("#agg").click(function(){
-      var chart = RadarChart.chart();
-      var svg = d3.select('body').append('svg')
-        .attr('width', 600)
-        .attr('height', 800);
+   var chart = RadarChart.chart();
+var svg = d3.select('div').append('svg')
+  .attr('width', 800)
+  .attr('height', 800);
 
-      // draw one
-      svg.append('g').classed('focus', 1).datum(data).call(chart);
-
-      // draw many radars
-      var game = svg.selectAll('g.game').data(
-        [
-          data,
-          data,
-          data,
-          data
+console.log(anger_agg,joy_agg,fear_agg,sadness_agg,disgust_agg);
+var data_agg = [{
+       className: 'agg',
+        axes: [
+          {axis: "anger", value:anger_agg,yOffset: 10},
+          {axis: "disgust", value: disgust_agg}, 
+          {axis: "sadness", value: sadness_agg},  
+          {axis: "fear", value: fear_agg},  
+          {axis: "joy", value: joy_agg, xOffset: -20}
         ]
-      );
-      game.enter().append('g').classed('game', 1);
-      game
-        .attr('transform', function(d, i) { return 'translate(150,600)'; })
-        .call(chart);
-        
+}];
+// draw one
+svg.append('g').classed('focus', 1).datum(data_agg).call(chart);
   });
+
 
     RadarChart.draw(".chart-container", data);
