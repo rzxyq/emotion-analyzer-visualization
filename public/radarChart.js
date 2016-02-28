@@ -30,7 +30,7 @@ var docEmotions = '';
     var text = $('#textarea').val();
   
   var data2 = {
-      apikey: 'cd204fe27efdf0a2a8a738ed890c9d356420902e',
+      apikey: 'REPLACE BY YOUR API KEY',
       text: text,
       outputMode: 'json'
   };
@@ -111,3 +111,11 @@ svg.append('g').classed('focus', 1).datum(data_agg).call(chart);
 
 
     RadarChart.draw(".chart-container", data);
+
+
+
+//other possible emotion analysis apis
+//https://shl-mp.p.mashape.com/webresources/jammin/emotionV2
+
+
+

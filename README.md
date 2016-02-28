@@ -1,6 +1,9 @@
-# Node.js Starter Overview
+# Overview Simple text emotion analyze and visualization
 
-The Node.js Starter demonstrates a simple, reusable Node.js web application based on the Express framework.
+This app uses the starter node.js code from bluemix. Major changes are in the public folder. 
+To use the app, replace the API key in index.html with your alchemyapi key. 
+
+<p>Functionality: type in a paragraph in the speechbox and click Analyze. To get aggregate results in a single session, click Aggregate result. And each time you click it an aggregate graph will show up underneath the inputbox for you to view the differences each time.</p>
 
 ## Run the app locally
 
